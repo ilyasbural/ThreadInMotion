@@ -1,7 +1,11 @@
+using ThreadInMotion.Service;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.LoadServices();
+builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
