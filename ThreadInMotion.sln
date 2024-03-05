@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThreadInMotion.DataAccess",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThreadInMotion.Service", "ThreadInMotion.Service\ThreadInMotion.Service.csproj", "{5B859CCC-B99E-404E-B028-649FD4D4C9B9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThreadInMotion.Presentation", "ThreadInMotion.Presentation\ThreadInMotion.Presentation.csproj", "{7DE3F36E-9108-45D7-B4E2-3987EDB5CAF5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{5B859CCC-B99E-404E-B028-649FD4D4C9B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5B859CCC-B99E-404E-B028-649FD4D4C9B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5B859CCC-B99E-404E-B028-649FD4D4C9B9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7DE3F36E-9108-45D7-B4E2-3987EDB5CAF5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7DE3F36E-9108-45D7-B4E2-3987EDB5CAF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7DE3F36E-9108-45D7-B4E2-3987EDB5CAF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7DE3F36E-9108-45D7-B4E2-3987EDB5CAF5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
