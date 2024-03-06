@@ -18,11 +18,11 @@
 		[HttpPost]
 		public IActionResult Index(LoginViewModel Model)
 		{
-			RestClient = new RestClient(Configuration.GetSection("RestSettings").Get<RestSettings>()!.Path);
 			RestRequest = new RestRequest("api/login", Method.Post);
 			RestRequest.RequestFormat = DataFormat.Json;
 			RestRequest.AddJsonBody(Model);
 			RestResponse = RestClient.Execute(RestRequest);
+			string a = RestResponse.Content!;
 			//Response<SetlirsSession> Response = JsonConvert.DeserializeObject<Response<SetlirsSession>>(RestResponse.Content!)!;
 
 			//if (Response.Data.Email == Model.Email && Response.Data.Password == Model.Password)
@@ -33,15 +33,15 @@
 			//	//RestResponse = RestClient.Execute(RestRequest);
 			//	//Response<SetlirsSession> a = JsonConvert.DeserializeObject<Response<SetlirsSession>>(RestResponse.Content!)!;
 
-				
+
 			//	HttpContext.Session.SetString("Email", Model.Email);
 			//	HttpContext.Session.SetString("Password", Model.Password);
 			//	//HttpContext.Session.SetString("Name", a.Collection.FirstOrDefault()!.Name);
 			//	//HttpContext.Session.SetString("Lastname", a.Collection.FirstOrDefault()!.Lastname);
 			//	return RedirectToAction("Index", "Home", new { Area = "user" });
-   //         }
-			
-			return View();
+			//         }
+
+			return RedirectToAction("Index", "Home", new { Area = "user" });
 		}
 	}
 }

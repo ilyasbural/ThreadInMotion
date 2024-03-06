@@ -1,21 +1,23 @@
 ﻿namespace ThreadInMotion.Presentation.Areas.Api.Controllers
 {
     using Core;
-    using Newtonsoft.Json;
+	using NuGet.Protocol;
     using Microsoft.AspNetCore.Mvc;
     using ThreadInMotion.SmartGlove.Sdk.Models.Glove;
     using ThreadInMotion.SmartGlove.Sdk.Interfaces.Glove;
 
-    [ApiController]
+	[ApiController]
     [Route("api/[controller]")]
     public class LoginController : ControllerBase
     {
+		readonly ILogin LoginManager;
 		readonly ICommonService CommonService;
 		readonly IDisplayGenerator DisplayGenerator;
 		readonly IScreenGenerator ScreenGenerator;
 
-		public LoginController(ICommonService commonService, IDisplayGenerator displayGenerator, IScreenGenerator screenGenerator)
+		public LoginController(ILogin login, ICommonService commonService, IDisplayGenerator displayGenerator, IScreenGenerator screenGenerator)
 		{
+			LoginManager = login;
 			CommonService = commonService;
 			DisplayGenerator = displayGenerator;
 			ScreenGenerator = screenGenerator;
@@ -24,38 +26,29 @@
 		[HttpPost]
 		public async Task<Response<Display>> Login([FromBody] LoginDto Model)
 		{
+			int success = 0; string successMessage = String.Empty;		
 			Response<Display> Response = new Response<Display>() { Data = new Display() };
 
-			//string Session = await RedisService.GetValueAsync(Model.Email);
+			if (Model.Username == "ThreadInMotion" && Model.Password == "02129099846")
+			{
+				success = 1;
+				successMessage = "Succesfully login";
+				Response = await LoginManager.Login();
+				Response.Data.ToJson();
+			}
 
-			//if (String.IsNullOrEmpty(Session))
-			//{
-			//    Response<User> User = await UserService.SelectEmailPasswordAsync(new UserSelectDto { Email = Model.Email, Password = Model.Password });
-
-			//    if (User.Collection.Count > 0)
-			//    {
-			//        Response<UserDetail> UserDetail = await UserDetailService.SelectByUserDetail(new UserDetailSelectDto { UserId = User.Collection.FirstOrDefault()!.Id });
-			//        if (User.Collection.Count > 0)
-			//        {
-			//            SetlirsSession setlirsSession = new SetlirsSession();
-			//            setlirsSession.Session = Guid.NewGuid();
-			//            setlirsSession.Id = User.Collection.FirstOrDefault()!.Id;
-			//            setlirsSession.Email = User.Collection.FirstOrDefault()!.Email;
-			//            setlirsSession.Password = User.Collection.FirstOrDefault()!.Password;
-			//            setlirsSession.UserDetailId = UserDetail.Collection.FirstOrDefault()!.Id;
-			//            await RedisService.SetValueAsync(Model.Email, JsonConvert.SerializeObject(setlirsSession));
-			//            Response.Data = setlirsSession;
-			//        }
-			//    }
-			//}
-			//else Response.Data = JsonConvert.DeserializeObject<SetlirsSession>(Session)!;
+			else
+			{
+				success = 0;
+				successMessage = "Username or Password is not correct!";
+			}
 
 			return new Response<Display>
 			{
-				Success = 1,
-				Message = "Success",
+				Success = success,
+				Message = successMessage,
 				Data = Response.Data,
-				IsValidationError = true,
+				IsValidationError = false,
 			};
 		}
 	}

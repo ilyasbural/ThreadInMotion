@@ -7,7 +7,6 @@ builder.Services.AddControllersWithViews();
 builder.Services.LoadServices();
 builder.Services.AddSwaggerGen();
 
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -29,13 +28,5 @@ app.MapControllerRoute(
 app.MapControllerRoute(
     name: "areas",
     pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
-
-//app.UseEndpoints(endpoints =>
-//{
-//    endpoints.MapControllerRoute(
-//      name: "areas",
-//      pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
-//    );
-//});
 
 app.Run();

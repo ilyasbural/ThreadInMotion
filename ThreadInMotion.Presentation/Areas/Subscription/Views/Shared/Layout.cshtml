@@ -1,0 +1,402 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>Setlirs Subscriber</title>
+	<meta name="description" content="Admin, Dashboard, Bootstrap" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" sizes="196x196" href="~/assets/images/logo.png">
+	<link rel="stylesheet" href="~/libs/bower/font-awesome/css/font-awesome.min.css" asp-append-version="true">
+	<link rel="stylesheet" href="~/libs/bower/material-design-iconic-font/dist/css/material-design-iconic-font.css" asp-append-version="true">
+	<link rel="stylesheet" href="~/libs/bower/animate.css/animate.min.css" asp-append-version="true">
+	<link rel="stylesheet" href="~/libs/bower/fullcalendar/dist/fullcalendar.min.css" asp-append-version="true">
+	<link rel="stylesheet" href="~/libs/bower/perfect-scrollbar/css/perfect-scrollbar.css" asp-append-version="true">
+	<link rel="stylesheet" href="~/assets/css/bootstrap.css" asp-append-version="true">
+	<link rel="stylesheet" href="~/assets/css/app.css" asp-append-version="true">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:400,500,600,700,800,900,300">
+</head>
+<body class="sb-left">
+	<aside id="app-aside" class="app-aside left light">
+		<header class="aside-header">
+			<div class="animated">
+				<a href="/user" id="app-brand" class="app-brand">
+					<span id="brand-icon" class="brand-icon"><i class="fa fa-gg"></i></span>
+					<span id="brand-name" class="brand-icon foldable">Setlirs</span>
+				</a>
+			</div>
+		</header>
+		<div class="aside-user">
+			<div class="media">
+				<div class="media-left">
+					<div class="avatar avatar-md avatar-circle">
+						<a href="javascript:void(0)"><img class="img-responsive" src="~/assets/images/221.jpg" alt="avatar" /></a>
+					</div>
+				</div>
+				<div class="media-body">
+					<div class="foldable">
+						<h5><a href="javascript:void(0)" class="username">@ViewData["Name"] @ViewData["Lastname"]</a></h5>
+						<ul>
+							<li class="dropdown">
+								<a href="javascript:void(0)" class="dropdown-toggle usertitle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									<small>Web Developer</small>
+									<span class="caret"></span>
+								</a>
+								<ul class="dropdown-menu animated flipInY">
+									<li>
+										<a class="text-color" href="/user">
+											<span class="m-r-xs"><i class="fa fa-home"></i></span>
+											<span>Masaüstü</span>
+										</a>
+									</li>
+									<li>
+										<a class="text-color" href="/user/profile">
+											<span class="m-r-xs"><i class="fa fa-user"></i></span>
+											<span>Profil</span>
+										</a>
+									</li>
+									<li>
+										<a class="text-color" href="/user/password">
+											<span class="m-r-xs"><i class="fa fa-key" aria-hidden="true"></i></span>
+											<span>Şifre Değişikliği</span>
+										</a>
+									</li>
+									<li>
+										<a class="text-color" href="/user/settings">
+											<span class="m-r-xs"><i class="fa fa-gear"></i></span>
+											<span>Ayarlar</span>
+										</a>
+									</li>
+									<li role="separator" class="divider"></li>
+									<li>
+										@using (Html.BeginForm("Logout", "Login", FormMethod.Post, new { id = "logoutForm" }))
+										{
+											<a class="text-color" href="javascript:document.getElementById('logoutForm').submit()">
+												<span class="m-r-xs"><i class="fa fa-power-off"></i></span>
+												<span>Oturum Kapat</span>
+											</a>
+										}
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="aside-scroll">
+			<div id="aside-scroll-inner" class="aside-scroll-inner">
+				<ul class="aside-menu aside-left-menu">
+
+					<li class="menu-item">
+						<a href="/user" class="menu-link">
+							<span class="menu-icon"><i class="fa fa-home"></i></span>
+							<span class="menu-text foldable">Masaüstü</span>
+							<span class="menu-caret foldable"><i class="zmdi zmdi-hc-sm zmdi-chevron-right"></i></span>
+						</a>
+					</li>
+
+					<li class="menu-item has-submenu">
+						<a href="javascript:void(0)" class="menu-link submenu-toggle">
+							<span class="menu-icon"><i class="fa fa-cubes" aria-hidden="true"></i></span>
+							<span class="menu-text foldable">Yönetim</span>
+							<span class="menu-caret foldable"><i class="zmdi zmdi-hc-sm zmdi-chevron-right"></i></span>
+						</a>
+						<ul class="submenu">
+							<li><a href="/user/managementorganization">Organizasyon</a></li>
+							<li><a href="/user/managementbudget">Bütçe</a></li>
+							<li><a href="/user/managementexpense">Harcamalar</a></li>
+							<li><a href="/user/managementincome">Gelirler</a></li>
+							<li><a href="/user/managementinvitation">Davetler</a></li>
+							<li><a href="/user/managementsettings">Ayarlar</a></li>
+							<li><a href="/user/managementview">Görüntülenmeler</a></li>
+						</ul>
+					</li>				
+
+					<li class="menu-item has-submenu">
+						<a href="javascript:void(0)" class="menu-link submenu-toggle">
+							<span class="menu-icon"><i class="fa fa-users" aria-hidden="true"></i></span>
+							<span class="menu-text foldable">Üyelik</span>
+							<span class="menu-caret foldable"><i class="zmdi zmdi-hc-sm zmdi-chevron-right"></i></span>
+						</a>
+						<ul class="submenu">
+							<li><a href="/user/profile">Profil</a></li>
+							<li><a href="/user/address">Adresler</a></li>
+							<li><a href="/user/contact">Telefon</a></li>
+							<li><a href="/user/email">Email</a></li>
+						</ul>
+					</li>
+
+					<li class="menu-item has-submenu">
+						<a href="javascript:void(0)" class="menu-link submenu-toggle">
+							<span class="menu-icon"><i class="fa fa-sitemap" aria-hidden="true"></i></span>
+							<span class="menu-text foldable">Organizasyon</span>
+							<span class="menu-caret foldable"><i class="zmdi zmdi-hc-sm zmdi-chevron-right"></i></span>
+						</a>
+						<ul class="submenu">
+							<li><a href="/user/organization">Organizasyon</a></li>
+							<li><a href="/user/organizationuser">Üyeler</a></li>
+							<li><a href="/user/organizationexpense">Harcamalar</a></li>
+							<li><a href="/user/organizationpayment">Ödemeler</a></li>
+						</ul>
+					</li>
+
+					@* <li class="menu-item">
+						<a href="/user/organization" class="menu-link">
+							<span class="menu-icon"><i class="fa fa-sitemap" aria-hidden="true"></i></span>
+							<span class="menu-text foldable">Organizasyonlar</span>
+							<span class="menu-caret foldable"><i class="zmdi zmdi-hc-sm zmdi-chevron-right"></i></span>
+						</a>
+					</li> *@
+
+					@* <li class="menu-item">
+						<a href="/subscriber/meeting" class="menu-link">
+							<span class="menu-icon"><i class="fa fa-suitcase" aria-hidden="true"></i></span>
+							<span class="menu-text foldable">Toplantılar</span>
+							<span class="menu-caret foldable"><i class="zmdi zmdi-hc-sm zmdi-chevron-right"></i></span>
+						</a>
+					</li> *@
+
+					@* <li class="menu-item">
+						<a href="/subscriber/survey" class="menu-link">
+							<span class="menu-icon"><i class="fa fa-book" aria-hidden="true"></i></span>
+							<span class="menu-text foldable">Anketler</span>
+							<span class="menu-caret foldable"><i class="zmdi zmdi-hc-sm zmdi-chevron-right"></i></span>
+						</a>
+					</li> *@
+
+					@* <li class="menu-item has-submenu">
+						<a href="javascript:void(0)" class="menu-link submenu-toggle">
+							<span class="menu-icon"><i class="fa fa-users" aria-hidden="true"></i></span>
+							<span class="menu-text foldable">Raporlar</span>
+							<span class="menu-caret foldable"><i class="zmdi zmdi-hc-sm zmdi-chevron-right"></i></span>
+						</a>
+						<ul class="submenu">
+							<li><a href="/subscriber/ability">Yetenekler</a></li>
+							<li><a href="/user/about">Hakkında</a></li>
+							<li><a href="/user/address">Adresler</a></li>
+							<li><a href="/user/contact">İletişim</a></li>
+							<li><a href="/user/certificate">Sertifikalar</a></li>
+							<li><a href="/user/college">Universite</a></li>
+							<li><a href="/user/experience">Tecrübeler</a></li>
+							<li><a href="/user/language">Diller</a></li>
+							<li><a href="/user/email">Emailler</a></li>
+							<li><a href="/user/diseasehistory">Hastalık Geçmişi</a></li>
+							<li><a href="/user/examhistory">Sınav Geçmişi</a></li>
+							<li><a href="/user/project">Projeler</a></li>
+							<li><a href="/user/publish">Yayınlar</a></li>
+							<li><a href="/user/referance">Referanslar</a></li>
+							<li><a href="/user/militaryservice">Askerlik</a></li>
+							<li><a href="/user/photo">Fotoğraflar</a></li>
+							<li><a href="/user/surveyhistory">Anket Geçmişi</a></li>
+							<li><a href="/user/type">Türü</a></li>
+							<li><a href="/user/video">Video</a></li>
+						</ul>
+					</li> *@
+
+					
+
+					@* <li class="menu-item has-submenu">
+						<a href="javascript:void(0)" class="menu-link submenu-toggle">
+							<span class="menu-icon"><i class="fa fa-users" aria-hidden="true"></i></span>
+							<span class="menu-text foldable">Site Yönetim</span>
+							<span class="menu-caret foldable"><i class="zmdi zmdi-hc-sm zmdi-chevron-right"></i></span>
+						</a>
+						<ul class="submenu">
+							<li><a href="/user/ability">Üyeler</a></li>
+							<li><a href="/user/about">Aidatlar</a></li>
+							<li><a href="/user/address">Harcamalar</a></li>
+							<li><a href="/user/contact">Aidatlar</a></li>
+							<li><a href="/user/certificate">Toplantılar</a></li>
+							<li><a href="/user/college">Organizasyonlar</a></li>
+							<li><a href="/user/experience">Duyurular</a></li>
+							<li><a href="/user/language">Anketler</a></li>
+						</ul>
+					</li> *@
+
+					@* <li class="menu-item has-submenu">
+						<a href="javascript:void(0)" class="menu-link submenu-toggle">
+							<span class="menu-icon"><i class="fa fa-users" aria-hidden="true"></i></span>
+							<span class="menu-text foldable">Yönetim</span>
+							<span class="menu-caret foldable"><i class="zmdi zmdi-hc-sm zmdi-chevron-right"></i></span>
+						</a>
+						<ul class="submenu">
+							<li><a href="/user/ability">Üyeler</a></li>
+							<li><a href="/user/about">Organizasyonlar</a></li>
+							<li><a href="/user/address">Toplantılar</a></li>
+							<li><a href="/user/contact">Aidatlar</a></li>
+							<li><a href="/user/certificate">Harcamalar</a></li>
+							<li><a href="/user/college">Gelirler</a></li>
+							<li><a href="/user/experience">Duyurular</a></li>
+							<li><a href="/user/language">Anketler</a></li>
+							<li><a href="/user/email">Emailler</a></li>
+							<li><a href="/user/diseasehistory">Hastalık Geçmişi</a></li>
+							<li><a href="/user/examhistory">Sınav Geçmişi</a></li>
+							<li><a href="/user/project">Projeler</a></li>
+							<li><a href="/user/publish">Yayınlar</a></li>
+							<li><a href="/user/referance">Referanslar</a></li>	
+							<li><a href="/user/militaryservice">Askerlik</a></li>
+							<li><a href="/user/photo">Fotoğraflar</a></li>
+							<li><a href="/user/surveyhistory">Anket Geçmişi</a></li>
+							<li><a href="/user/type">Türü</a></li>
+							<li><a href="/user/video">Video</a></li>
+						</ul>
+					</li> *@
+
+					@* <li class="menu-item has-submenu">
+						<a href="javascript:void(0)" class="menu-link submenu-toggle">
+							<span class="menu-icon"><i class="fa fa-users" aria-hidden="true"></i></span>
+							<span class="menu-text foldable">Eğitimler</span>
+							<span class="menu-caret foldable"><i class="zmdi zmdi-hc-sm zmdi-chevron-right"></i></span>
+						</a>
+						<ul class="submenu">
+							<li><a href="/user/ability">Yetenekler</a></li>
+							<li><a href="/user/about">Hakkında</a></li>
+							<li><a href="/user/address">Adresler</a></li>
+							<li><a href="/user/contact">İletişim</a></li>
+							<li><a href="/user/certificate">Sertifikalar</a></li>
+							<li><a href="/user/college">Universite</a></li>
+							<li><a href="/user/experience">Tecrübeler</a></li>
+							<li><a href="/user/language">Diller</a></li>
+							<li><a href="/user/email">Emailler</a></li>
+							<li><a href="/user/diseasehistory">Hastalık Geçmişi</a></li>
+							<li><a href="/user/examhistory">Sınav Geçmişi</a></li>
+							<li><a href="/user/project">Projeler</a></li>
+							<li><a href="/user/publish">Yayınlar</a></li>
+							<li><a href="/user/referance">Referanslar</a></li>
+							<li><a href="/user/militaryservice">Askerlik</a></li>
+							<li><a href="/user/photo">Fotoğraflar</a></li>
+							<li><a href="/user/surveyhistory">Anket Geçmişi</a></li>
+							<li><a href="/user/type">Türü</a></li>
+							<li><a href="/user/video">Video</a></li>
+						</ul>
+					</li>				
+
+					@* <li class="menu-item has-submenu">
+						<a href="javascript:void(0)" class="menu-link submenu-toggle">
+							<span class="menu-icon"><i class="fa fa-users" aria-hidden="true"></i></span>
+							<span class="menu-text foldable">Anketler</span>
+							<span class="menu-caret foldable"><i class="zmdi zmdi-hc-sm zmdi-chevron-right"></i></span>
+						</a>
+						<ul class="submenu">
+							<li><a href="/user/ability">Yetenekler</a></li>
+							<li><a href="/user/about">Hakkında</a></li>
+							<li><a href="/user/address">Adresler</a></li>
+							<li><a href="/user/contact">İletişim</a></li>
+							<li><a href="/user/certificate">Sertifikalar</a></li>
+							<li><a href="/user/college">Universite</a></li>
+							<li><a href="/user/experience">Tecrübeler</a></li>
+							<li><a href="/user/language">Diller</a></li>
+							<li><a href="/user/email">Emailler</a></li>
+							<li><a href="/user/diseasehistory">Hastalık Geçmişi</a></li>
+							<li><a href="/user/examhistory">Sınav Geçmişi</a></li>
+							<li><a href="/user/project">Projeler</a></li>
+							<li><a href="/user/publish">Yayınlar</a></li>
+							<li><a href="/user/referance">Referanslar</a></li>
+							<li><a href="/user/militaryservice">Askerlik</a></li>
+							<li><a href="/user/photo">Fotoğraflar</a></li>
+							<li><a href="/user/surveyhistory">Anket Geçmişi</a></li>
+							<li><a href="/user/type">Türü</a></li>
+							<li><a href="/user/video">Video</a></li>
+						</ul>
+					</li> *@
+
+					@* <li class="menu-item has-submenu">
+						<a href="javascript:void(0)" class="menu-link submenu-toggle">
+							<span class="menu-icon"><i class="fa fa-users" aria-hidden="true"></i></span>
+							<span class="menu-text foldable">Raporlar</span>
+							<span class="menu-caret foldable"><i class="zmdi zmdi-hc-sm zmdi-chevron-right"></i></span>
+						</a>
+						<ul class="submenu">
+							<li><a href="/user/ability">Yetenekler</a></li>
+							<li><a href="/user/about">Hakkında</a></li>
+							<li><a href="/user/address">Adresler</a></li>
+							<li><a href="/user/contact">İletişim</a></li>
+							<li><a href="/user/certificate">Sertifikalar</a></li>
+							<li><a href="/user/college">Universite</a></li>
+							<li><a href="/user/experience">Tecrübeler</a></li>
+							<li><a href="/user/language">Diller</a></li>
+							<li><a href="/user/email">Emailler</a></li>
+							<li><a href="/user/diseasehistory">Hastalık Geçmişi</a></li>
+							<li><a href="/user/examhistory">Sınav Geçmişi</a></li>
+							<li><a href="/user/project">Projeler</a></li>
+							<li><a href="/user/publish">Yayınlar</a></li>
+							<li><a href="/user/referance">Referanslar</a></li>
+							<li><a href="/user/militaryservice">Askerlik</a></li>
+							<li><a href="/user/photo">Fotoğraflar</a></li>
+							<li><a href="/user/surveyhistory">Anket Geçmişi</a></li>
+							<li><a href="/user/type">Türü</a></li>
+							<li><a href="/user/video">Video</a></li>
+						</ul>
+					</li> *@
+				</ul>
+
+				<hr>
+				<footer id="aside-footer">
+					<ul class="aside-menu aside-left-menu">
+						<li class="menu-item">
+							<a href="/user/documentation" class="menu-link">
+								<span class="menu-icon"><i class="zmdi zmdi-file-text zmdi-hc-lg"></i></span>
+								<span class="menu-text foldable">Dokumantasyon</span>
+							</a>
+						</li>
+						<li class="menu-item">
+							<a href="/user/settings" class="menu-link">
+								<span class="menu-icon"><i class="zmdi zmdi-settings zmdi-hc-lg"></i></span>
+								<span class="menu-text foldable">Ayarlar</span>
+							</a>
+						</li>
+					</ul>
+				</footer>
+			</div>
+		</div><
+	</aside>
+
+	<nav id="app-navbar" class="app-navbar p-l-lg p-r-md primary">
+		<div id="navbar-header" class="pull-left">
+			<button id="aside-fold" class="hamburger visible-lg-inline-block hamburger--arrowalt is-active js-hamburger" type="button">
+				<span class="hamburger-box">
+					<span class="hamburger-inner"></span>
+				</span>
+			</button>
+			<button id="aside-toggle" class="hamburger hidden-lg hamburger--spin js-hamburger" type="button">
+				<span class="hamburger-box">
+					<span class="hamburger-inner"></span>
+				</span>
+			</button>
+			<h5 id="page-title" class="visible-md-inline-block visible-lg-inline-block m-l-md">Dashboard</h5>
+		</div>
+
+		<div id="navbar-search" class="navbar-search">
+			<form action="#">
+				<span class="search-icon"><i class="fa fa-search"></i></span>
+				<input class="search-field" type="search" placeholder="search..." />
+			</form>
+			<button id="search-close" class="search-close">
+				<i class="fa fa-close"></i>
+			</button>
+		</div>
+	</nav>
+
+	<main id="app-main" class="app-main">
+		@RenderBody()
+	</main>
+
+	<script src="~/libs/bower/jquery/dist/jquery.js" asp-append-version="true"></script>
+	<script src="~/libs/bower/jquery-ui/jquery-ui.min.js" asp-append-version="true"></script>
+	<script src="~/libs/bower/jQuery-Storage-API/jquery.storageapi.min.js" asp-append-version="true"></script>
+	<script src="~/libs/bower/bootstrap-sass/assets/javascripts/bootstrap.js" asp-append-version="true"></script>
+	<script src="~/libs/bower/superfish/dist/js/hoverIntent.js" asp-append-version="true"></script>
+	<script src="~/libs/bower/superfish/dist/js/superfish.js" asp-append-version="true"></script>
+	<script src="~/libs/bower/jquery-slimscroll/jquery.slimscroll.js" asp-append-version="true"></script>
+	<script src="~/libs/bower/perfect-scrollbar/js/perfect-scrollbar.jquery.js" asp-append-version="true"></script>
+	<script src="~/libs/bower/PACE/pace.min.js" asp-append-version="true"></script>
+	<script src="~/assets/js/library.js" asp-append-version="true"></script>
+	<script src="~/assets/js/plugins.js" asp-append-version="true"></script>
+	<script src="~/assets/js/app.js" asp-append-version="true"></script>
+	<script src="~/libs/bower/moment/moment.js" asp-append-version="true"></script>
+	<script src="~/libs/bower/fullcalendar/dist/fullcalendar.min.js" asp-append-version="true"></script>
+	<script src="~/assets/js/fullcalendar.js" asp-append-version="true"></script>
+
+</body>
+</html>
