@@ -15,18 +15,26 @@ if (!app.Environment.IsDevelopment())
     app.UseExceptionHandler("/Home/Error");
 }
 
+app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
 app.UseSwagger();
 app.UseSwaggerUI();
 app.UseAuthorization();
+app.MapControllers();
+app.UseCors();
 
 app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+	name: "areas",
+	pattern: "{area:exists}/{controller=Home}/{action=Index}"
+);
 
 app.MapControllerRoute(
-    name: "areas",
-    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+	name: "default",
+	pattern: "{controller=Home}/{action=Index}/{id?}");
+
+app.MapControllerRoute(
+	name: "user",
+	pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
 
 app.Run();

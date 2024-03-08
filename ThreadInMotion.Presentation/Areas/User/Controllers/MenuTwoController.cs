@@ -7,9 +7,9 @@
 	using Microsoft.Extensions.Configuration;
 
 	[Area("User")]
-	public class HomeController : BaseController
+	public class MenuTwoController : BaseController
 	{
-		public HomeController(IConfiguration configuration) : base(configuration) { }
+		public MenuTwoController(IConfiguration configuration) : base(configuration) { }
 
 		public IActionResult Index()
 		{

@@ -41,7 +41,7 @@
 			//	return RedirectToAction("Index", "Home", new { Area = "user" });
 			//         }
 
-			return RedirectToAction("Index", "Home", new { Area = "user" });
+			return RedirectToAction("Index", "Home", new { Area = "User" });
 		}
 	}
 }
