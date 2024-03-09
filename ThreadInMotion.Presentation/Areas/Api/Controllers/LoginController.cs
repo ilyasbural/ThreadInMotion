@@ -1,7 +1,6 @@
 ﻿namespace ThreadInMotion.Presentation.Areas.Api.Controllers
 {
     using Core;
-	using NuGet.Protocol;
     using Microsoft.AspNetCore.Mvc;
     using ThreadInMotion.SmartGlove.Sdk.Models.Glove;
     using ThreadInMotion.SmartGlove.Sdk.Interfaces.Glove;
@@ -25,28 +24,26 @@
 
 		[HttpPost]
 		public async Task<Response<Display>> Login([FromBody] LoginDto Model)
-		{
-			int success = 0; string successMessage = String.Empty;		
+		{	
 			Response<Display> Response = new Response<Display>() { Data = new Display() };
 
 			if (Model.Username == "ThreadInMotion" && Model.Password == "02129099846")
 			{
-				success = 1;
-				successMessage = "Succesfully login";
 				Response = await LoginManager.Login();
-				Response.Data.ToJson();
+				Response.Success = 1;
+				Response.Message = "Succesfully login";
 			}
 
 			else
 			{
-				success = 0;
-				successMessage = "Username or Password is not correct!";
+				Response.Success = 0;
+				Response.Message = "Username or Password is not correct!";
 			}
 
 			return new Response<Display>
 			{
-				Success = success,
-				Message = successMessage,
+				Success = Response.Success,
+				Message = Response.Message,
 				Data = Response.Data,
 				IsValidationError = false,
 			};
